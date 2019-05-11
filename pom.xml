@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!DOCTYPE project [
+        <!ELEMENT project (modelVersion|groupId|artifactId|version|packaging|name|url|properties|parent|dependencies|build)*>
+        <!ATTLIST project
+                xmlns CDATA #REQUIRED
+                xmlns:xsi CDATA #REQUIRED
+                xsi:schemaLocation CDATA #REQUIRED>
+        <!ELEMENT modelVersion (#PCDATA)>
+        <!ELEMENT groupId (#PCDATA)>
+        <!ELEMENT artifactId (#PCDATA)>
+        <!ELEMENT version (#PCDATA)>
+        <!ELEMENT packaging (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT url (#PCDATA)>
+        <!ELEMENT properties (project.build.sourceEncoding|maven.compiler.source|maven.compiler.target)*>
+        <!ELEMENT project.build.sourceEncoding (#PCDATA)>
+        <!ELEMENT maven.compiler.source (#PCDATA)>
+        <!ELEMENT maven.compiler.target (#PCDATA)>
+        <!ELEMENT parent (groupId|artifactId|version)*>
+        <!ELEMENT dependencies (dependency)*>
+        <!ELEMENT dependency (groupId|artifactId|version|scope)*>
+        <!ELEMENT scope (#PCDATA)>
+        <!ELEMENT build (finalName|plugins|pluginManagement)*>
+        <!ELEMENT finalName (#PCDATA)>
+        <!ELEMENT plugins (plugin)*>
+        <!ELEMENT plugin (groupId|artifactId|version)*>
+        <!ELEMENT pluginManagement (plugins)*>
+        ]>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -19,6 +46,12 @@
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.RELEASE</version>
+    </parent>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -26,6 +59,32 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>2.0.1</version>
+    </dependency>
+
+
+    <!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-logging &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-starter-logging</artifactId>-->
+<!--      <version>2.0.5.RELEASE</version>-->
+<!--    </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
@@ -43,36 +102,42 @@
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>5.1.6.RELEASE</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework</groupId>-->
+<!--      <artifactId>spring-webmvc</artifactId>-->
+<!--      <version>5.1.6.RELEASE</version>-->
+<!--    </dependency>-->
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-oxm -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-oxm</artifactId>
-      <version>5.1.6.RELEASE</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>5.1.6.RELEASE</version>
-    </dependency>
-      <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-tx</artifactId>
-          <version>5.1.6.RELEASE</version>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-test</artifactId>
-          <version>5.1.6.RELEASE</version>
-          <scope>test</scope>
-      </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+
+
+
+
+<!--      <dependency>-->
+<!--      <groupId>org.springframework</groupId>-->
+<!--      <artifactId>spring-oxm</artifactId>-->
+<!--      <version>5.1.6.RELEASE</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-jdbc &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.springframework</groupId>-->
+<!--      <artifactId>spring-jdbc</artifactId>-->
+<!--      <version>5.1.6.RELEASE</version>-->
+<!--    </dependency>-->
+<!--      &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-tx &ndash;&gt;-->
+<!--      <dependency>-->
+<!--          <groupId>org.springframework</groupId>-->
+<!--          <artifactId>spring-tx</artifactId>-->
+<!--          <version>5.1.6.RELEASE</version>-->
+<!--      </dependency>-->
+<!--      &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-test &ndash;&gt;-->
+<!--      <dependency>-->
+<!--          <groupId>org.springframework</groupId>-->
+<!--          <artifactId>spring-test</artifactId>-->
+<!--          <version>5.1.6.RELEASE</version>-->
+<!--          <scope>test</scope>-->
+<!--      </dependency>-->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
@@ -119,19 +184,37 @@
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.2.3</version>
-      <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-core -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
       <version>1.2.3</version>
+        <scope>compile</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>1.7.26</version>
+        <scope>compile</scope>
+    </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <version>1.7.26</version>
+          <scope>test</scope>
+      </dependency>
+
+
+      <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.26</version>
+      <scope>test</scope>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
@@ -141,8 +224,19 @@
       <version>27.1-jre</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
+    </dependency>
 
-
+    <!-- https://mvnrepository.com/artifact/aspectj/aspectjweaver -->
+    <dependency>
+      <groupId>aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.5.4</version>
+    </dependency>
 
 
 

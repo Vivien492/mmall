@@ -20,7 +20,6 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    @Autowired
     public ServerResponse<User> login(String userName, String password) {
         int resultCount = userMapper.checkUserName(userName);
         if (0 == resultCount){
