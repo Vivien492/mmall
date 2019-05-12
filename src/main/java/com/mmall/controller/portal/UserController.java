@@ -5,6 +5,7 @@ import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
+import com.mmall.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -76,8 +77,8 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "forget_check_answer.do",method = RequestMethod.POST)
     //use local cache
-    public ServerResponse<String> forCheckAnswer(String username,String password,String answer){
-        return iUserService.checkAnswer(username,password,answer);
+    public ServerResponse<String> forCheckAnswer(String username,String question,String answer){
+        return iUserService.checkAnswer(username,question,answer);
     }
 
     @ResponseBody
@@ -93,18 +94,27 @@ public class UserController {
         if (user == null){
             return ServerResponse.createByErrorMessage("user doesn't login");
         }
+        user.setPassword(MD5Util.MD5EncodeUtf8(passwordNew));
         return iUserService.resetPassword(passwordOld,passwordNew,user);
     }
 
     @ResponseBody
     @RequestMapping(value = "update_information.do",method = RequestMethod.POST)
     public ServerResponse<User> updateInformation(HttpSession session, User user){
+        //get from session, old user
         User currentUser = (User) session.getAttribute(Const.CURRENT_USER);
         if (currentUser == null){
             return ServerResponse.createByErrorMessage("currentUser doesn't login");
         }
+//        test, this parameter user is the changed user,
+//        return ServerResponse.createBySuccess("currentUser",currentUser);
+
+//        //can not change
+        user.setPassword(currentUser.getPassword());//a safty problem.it will be set to "",don't know why!!! but without this,the password will be changed
         user.setId(currentUser.getId());
         user.setUsername(currentUser.getUsername());
+
+
         ServerResponse<User> response = iUserService.updateInformation(user);
         if (response.isSuccess()){
             session.setAttribute(Const.CURRENT_USER,response.getData());

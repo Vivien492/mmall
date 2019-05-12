@@ -78,14 +78,6 @@
       <version>2.0.1</version>
     </dependency>
 
-
-    <!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-logging &ndash;&gt;-->
-<!--    <dependency>-->
-<!--      <groupId>org.springframework.boot</groupId>-->
-<!--      <artifactId>spring-boot-starter-logging</artifactId>-->
-<!--      <version>2.0.5.RELEASE</version>-->
-<!--    </dependency>-->
-
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
       <groupId>mysql</groupId>
@@ -101,43 +93,6 @@
       <version>5.1.8</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-<!--    <dependency>-->
-<!--      <groupId>org.springframework</groupId>-->
-<!--      <artifactId>spring-webmvc</artifactId>-->
-<!--      <version>5.1.6.RELEASE</version>-->
-<!--    </dependency>-->
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-oxm -->
-
-    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
-
-
-
-
-<!--      <dependency>-->
-<!--      <groupId>org.springframework</groupId>-->
-<!--      <artifactId>spring-oxm</artifactId>-->
-<!--      <version>5.1.6.RELEASE</version>-->
-<!--    </dependency>-->
-<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-jdbc &ndash;&gt;-->
-<!--    <dependency>-->
-<!--      <groupId>org.springframework</groupId>-->
-<!--      <artifactId>spring-jdbc</artifactId>-->
-<!--      <version>5.1.6.RELEASE</version>-->
-<!--    </dependency>-->
-<!--      &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-tx &ndash;&gt;-->
-<!--      <dependency>-->
-<!--          <groupId>org.springframework</groupId>-->
-<!--          <artifactId>spring-tx</artifactId>-->
-<!--          <version>5.1.6.RELEASE</version>-->
-<!--      </dependency>-->
-<!--      &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-test &ndash;&gt;-->
-<!--      <dependency>-->
-<!--          <groupId>org.springframework</groupId>-->
-<!--          <artifactId>spring-test</artifactId>-->
-<!--          <version>5.1.6.RELEASE</version>-->
-<!--          <scope>test</scope>-->
-<!--      </dependency>-->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
@@ -237,10 +192,6 @@
       <artifactId>aspectjweaver</artifactId>
       <version>1.5.4</version>
     </dependency>
-
-
-
-
 
   </dependencies>
 

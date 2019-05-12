@@ -1,8 +1,10 @@
 package com.mmall.dao;
 
 import com.mmall.pojo.User;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface UserMapper {
 
     int deleteByPrimaryKey(Integer id);
@@ -16,7 +18,7 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-  ///////////////////////以上是生成的/////////////////////////////////////
+  /////////////////////以上是生成的/////////////////////////////////////
 
     int checkUserName(String userName);
 

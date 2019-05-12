@@ -138,6 +138,7 @@ public class UserServiceImpl implements IUserService {
             return ServerResponse.createByErrorMessage("wrong old password");
         }
         //why?!!!! password in user is old? new ? when do they become new?
+        //done with this question by set user's password to passwordNew
         int updateCount = userMapper.updateByPrimaryKeySelective(user);
         if (updateCount > 0){
             return ServerResponse.createBySuccessMessage("update password success");
@@ -173,6 +174,19 @@ public class UserServiceImpl implements IUserService {
         }
         user.setPassword(StringUtils.EMPTY);
         return ServerResponse.createBySuccess(user);
+    }
+
+
+    /**
+     * check if user is admin or not
+     * @param user
+     * @return
+     */
+    //backend
+    public ServerResponse checkAdminRole(User user){
+        if (user != null && user.getRole().intValue() == Const.Role.ROLE_ADMIN)
+            return ServerResponse.createBySuccess();
+        return ServerResponse.createByError();
     }
 
 }
