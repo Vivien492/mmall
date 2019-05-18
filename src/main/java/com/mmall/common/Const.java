@@ -47,4 +47,12 @@ public class Const {
         //List .............O(n)
         Set<String> PRICE_ASC_DESC = Sets.newHashSet("price_desc","price_asc");
     }
+
+    public interface cart{
+        int CHECKIED = 1; //the product is checked in the cart
+        int UN_CHECKED = 0;
+
+        String LIMIT_NUM_FAIL = "LIMIT_NUM_FAIL";
+        String LIMIT_NUM_SUC = "LIMIT_NUM_SUC";
+    }
 }

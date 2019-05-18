@@ -55,7 +55,7 @@ public class UserServiceImpl implements IUserService {
         if (0 == resultCount){
             return  ServerResponse.createByErrorMessage("register failed");
         }
-        return ServerResponse.createBySuccessMessage("register succes s");
+        return ServerResponse.createBySuccessMessage("register success");
     }
 
     public ServerResponse<String> checkValid(String string,String type){
