@@ -55,4 +55,60 @@ public class Const {
         String LIMIT_NUM_FAIL = "LIMIT_NUM_FAIL";
         String LIMIT_NUM_SUC = "LIMIT_NUM_SUC";
     }
+
+    public enum OrderStatusEnum{
+        CANCELED(0,"canceled"),
+        NO_PAY(10,"not pay"),
+        PAID(20,"paid"),
+        SHIPPED(40,"shipped"),
+        ORDER_SUCCESS(40,"order finished"),
+        ORDER_CLOSED(60,"order closed")
+        ;
+
+        private String value;
+        private int code;
+
+        OrderStatusEnum(int code,String value) {
+            this.value = value;
+            this.code = code;
+        }
+
+        public String getValue() {
+            return value;
+        }
+        public int getCode() {
+            return code;
+        }
+
+    }
+
+    public interface AlipayCallback{
+        String TRADE_STATUS_WAIT_BUYER_PAY = "WAIT_BUYER_PAY";
+        String TRADE_STATUS_TRADE_CLOSED = "TRADE_CLOSED";
+
+        String RESPONSE_SUCCESS = "success";
+        String RESPONSE_FAILED = "failed";
+    }
+
+    public enum PayPlatformEnum{
+        ALIPAY(1,"zhi fu bao");
+
+        ;
+
+        private String value;
+        private int code;
+
+        PayPlatformEnum(int code,String value) {
+            this.value = value;
+            this.code = code;
+        }
+
+        public String getValue() {
+            return value;
+        }
+        public int getCode() {
+            return code;
+        }
+    }
+
 }
