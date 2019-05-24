@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.mmall.pojo.Order">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="order_no" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_no" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="shipping_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="payment" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
@@ -39,7 +39,7 @@
       postage, status, payment_time, 
       send_time, end_time, close_time, 
       create_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER},
       #{shippingId,jdbcType=INTEGER}, #{payment,jdbcType=DECIMAL}, #{paymentType,jdbcType=INTEGER}, 
       #{postage,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{paymentTime,jdbcType=TIMESTAMP}, 
       #{sendTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{closeTime,jdbcType=TIMESTAMP}, 
@@ -96,7 +96,7 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="orderNo != null">
-        #{orderNo,jdbcType=INTEGER},
+        #{orderNo,jdbcType=BIGINT},
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
@@ -140,7 +140,7 @@
     update mmall_order
     <set>
       <if test="orderNo != null">
-        order_no = #{orderNo,jdbcType=INTEGER},
+        order_no = #{orderNo,jdbcType=BIGINT},
       </if>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
@@ -183,7 +183,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Order">
     update mmall_order
-    set order_no = #{orderNo,jdbcType=INTEGER},
+    set order_no = #{orderNo,jdbcType=BIGINT},
       user_id = #{userId,jdbcType=INTEGER},
       shipping_id = #{shippingId,jdbcType=INTEGER},
       payment = #{payment,jdbcType=DECIMAL},
@@ -212,6 +212,19 @@
     <include refid="Base_Column_List"></include>
     from mmall_order
     where order_no = #{orderNO}
+  </select>
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+      select
+      <include refid="Base_Column_List"></include>
+      from mmall_order
+      where user_id = #{userId}
+      order by create_time desc
+    </select>
+  <select id="selectAllOrder" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from  mmall_order
+    order by create_time desc
   </select>
 
 
